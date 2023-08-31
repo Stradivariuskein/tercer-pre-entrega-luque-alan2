@@ -1,0 +1,69 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+
+{% block title_h1 %}
+        {{ tittle }}
+{% endblock title_h1 %}
+        
+
+{% block content %}
+
+<div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-sm-6"> <!-- Ancho del 50% -->
+                <div class="card py-5 bg-secondary">
+                    <div class="card-body p-0">
+                        <h5 class="card-title">Busqueda</h5>
+                        <form action="{% url 'cuentas' %}" method="GET", class="align-items-center p-5">
+                          {% csrf_token %}
+                          <div>
+                              {{ form.name.label_tag}} {{ form.name }}
+                          </div>
+                          <button type="submit" class="btn btn-primary">{{button_text}}</button>
+                        </form>          
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="table-responsive my-5 bg-primary card">
+    <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+    {% for acount in acount_list %}
+    <tr>
+        <td>{{ acount.id }}</td>
+        <td>{{ acount.name }}</td>
+        <td>{{ acount.lastName }}</td>
+        <td>{{ acount.email }}</td>   
+        <td>
+            <div class="container mt-1">
+                    <a href="{% url 'account-update' acount.id %}" class="btn btn-success">editar</a>
+            </div>
+            <div class="container mt-1">
+                <form method="post" action="{% url 'account-delete' acount.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Borrar</button>
+                </form>
+            </div>
+        </td>  
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+</div>
+
+
+{% endblock content %}
+    

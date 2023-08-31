@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+
+
+{% block content %}
+
+<div class="container py-5 text-center">
+    <div class="row justify-content-center">
+        <div class="col-sm-6"> <!-- Ancho del 50% -->
+            <div class="card">
+                <div class="card-body">
+                    <form action="{% url 'turnCreate' %}" method="post", class="align-items-center p-5">
+                        {% csrf_token %}
+                        <input type="hidden" name="turn" value="{{turn}}">
+                        <h5 class="card-title">Turno el {{day_week}} el {{day}} de {{month}}</h5>
+                        <h5 class="card-title">a las {{time}}</h5>
+                        <h5 class="card-title">{{msj}}</h5>
+                         <button type="submit", class="btn btn-success">{{ button_text }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

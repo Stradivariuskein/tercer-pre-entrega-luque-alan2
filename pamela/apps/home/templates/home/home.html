@@ -1,0 +1,86 @@
+{% extends 'core/base.html' %}
+    {% load static %}
+
+    {% block title %}
+        Lic. Pamela
+    {% endblock title %}
+    
+    
+    
+    {% block content %}
+
+     <!-- Masthead-->
+     <header class="masthead bg-primary text-white text-center card">
+        <div class="container d-flex align-items-center flex-column">
+            <!-- Masthead Avatar Image-->
+            <img class="masthead-avatar mb-5 rounded-circle" src="{% static 'core/assets/img/girl.webp' %}" alt="..." />
+            <!-- Masthead Heading-->
+            <h1 class="masthead-heading text-uppercase mb-0">Lic. Pamela Luque</h1> <!-- titulo imagen -->
+            <!-- Icon Divider-->
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Masthead Subheading-->
+            <p class="masthead-subheading font-weight-light mb-0">Psicologa - Orientacion moderna - Tratamientos psicologicos</p> <!-- orietaciones -->
+        </div>
+    </header>
+
+    
+    <!-- secciones-->
+    <section class="page-section portfolio" id="portfolio">
+        <div class="container text-center">
+            <!-- Portfolio Section Heading-->
+
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Sobre mi</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+
+            <!-- Portfolio Grid Items-->
+            <div class="row justify-content-center">
+                {% for section in sections  %}
+
+                <section class="page-section bg-primary text-white mb-0 card" id="about">
+                    <div class="container text-center">
+                        <!-- About Section Heading-->
+                        <div class="row text justify-content-center"><h2 class="page-section-heading text-center text-uppercase text-white">{{section.tittle}}</h2></div>
+                        <div class="row text justify-content-center"><p class="text-uppercase page-section-heading text-center">{{ section.subTittle }}</p></div>
+                        <!-- About Section Content-->
+                        <div class="row text-center">                         
+                            <div class="ms-auto"><p class="lead">{{ section.content }}</p></div>                            
+                        </div>
+                        
+                    </div>
+                </section>
+
+
+                <!-- Portfolio Item 1-->
+                <div class="container mb-5">
+                    <div class=" mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <h3></h3>
+                        </div>
+                        <h4></h4>
+                    </div>
+                    <p></p>
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </section>
+
+    
+
+
+
+
+        
+        
+    {% endblock content %}
+        

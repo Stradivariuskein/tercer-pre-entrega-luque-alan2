@@ -1,0 +1,66 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+
+{% block title_h1 %}
+        {{ tittle }}
+{% endblock title_h1 %}
+        
+
+{% block content %}
+        <div style="width: 75%; margin: auto" class="py-5 align-items-center" >
+                <div class="container bg-secondary card">
+                        <p>{{ msj }}</p>
+                        <form action="" method="post", class="align-items-center p-5">
+                        {% csrf_token %}                        
+                                {{ form_home_fields|crispy }}
+                                <button type="submit", class="btn btn-success">{{ botton_text }}</button>
+                        
+                        </form>
+                </div>
+                <div class="container mt-5">
+                        <h1>{{ title2 }}</h1>
+                </div>
+                <div class="container mt-5"><a href="{% url 'home-section-create' %}" class="btn btn-success">Crear Seccion +</a></div>
+                
+                <div class="bg-primary mt-5 table-responsive justify-content-center card">
+                        <table class="table table-bordered pl-0 table-striped">
+                            <tr>
+                              <th scope="col">Título</th>
+                              <th scope="col">Subtitulo</th>
+                              <th scope="col">Contenido</th>
+                              <th scope="col">Acciones</th>
+                            </tr>
+                          </thead>
+                          
+                          {% for section in sections %}
+                        <tbody>
+                                <tr>
+                                  <td>{{section.tittle}}</td>
+                                  <td>{{section.subTittle}}</td>
+                                  <td>{{section.content}}</td>
+                                  <td>
+                                        <div class="container mt-1">
+                                                <a href="{% url 'home-section-update' section.id %}" class="btn btn-success">editar</a>
+                                        </div>
+                                        <div class="container mt-1">
+                                                <form method="post" action="{% url 'home-section-delete' section.id %}">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="btn btn-danger">Borrar</button>
+                                                </form>
+                                        </div>
+                                        </td>
+                                </tr>
+                        </tbody>
+                          {% endfor %}
+                                
+
+                        </table>
+                </div>
+            
+        </div>
+{% endblock content %}
+    

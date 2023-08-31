@@ -1,0 +1,74 @@
+{% extends 'core/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title_h1 %}
+        {{ tittle }}
+{% endblock title_h1 %}
+
+
+<div style="width: 50%; margin: auto" class="py-0 text-center align-items-center" >
+            
+  <form action="" method="post", class="align-items-center p-5">
+      
+          {{ search_form|crispy }}
+          <button type="submit", class="btn btn-success">{{ boton_name }}</button>
+      
+  </form>
+
+</div>
+
+  
+
+{% block content %}
+
+{% if search_form %}
+
+<div class="container py-5 text-center">
+    <div class="row justify-content-center">
+        <div class="col-sm-6"> <!-- Ancho del 50% -->
+            <div class="card bg-secondary">
+                <div class="card-body p-0">
+                    <h5 class="card-title">Busqueda</h5>
+                    <form action="/turnos" method="GET", class="align-items-center p-5">
+                      {% csrf_token %}
+                      <div>
+                          {{ search_form.day_of_week.label_tag}} {{ search_form.day_of_week }} {{ search_form.date.label_tag }} {{ search_form.date }}
+                      </div>
+                      <button type="submit" class="btn btn-primary">{{button_text}}</button>
+                    </form>          
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+{% endif %}
+
+<div class="container mt-5 text-center py-5">
+    <div class="row">
+        
+    {% for t, d in turns %}          
+      <div class="col-md-4">
+        <div class="card m-1">          
+          <div class="card-body bg-primary">
+
+            <form action="{% url 'getTurn' %}" method="POST">
+
+              {% csrf_token %}
+              
+              <input type="hidden" name="turn" value="{{t}}">
+              <h5 class="card-title">{{ d }}</h5>
+              <p class="card-text">{{ t }}</p>
+
+            <input type="submit" value="Tomar turno">
+          </form>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+    </div>
+  </div>
+{% endblock content %}
+    

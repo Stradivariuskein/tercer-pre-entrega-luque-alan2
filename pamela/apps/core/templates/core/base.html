@@ -1,0 +1,62 @@
+{% extends 'core/navBar.html' %}
+
+{% block base %}
+
+{% if tittle %}
+            
+<div class="pt-5 mt-5"> 
+    <div class="container text-center">
+        <h1>
+            {% block title_h1 %}
+                
+            {% endblock title_h1 %}
+        </h1>
+    </div>
+</div>
+
+{% endif %}
+    
+
+<div class="container">
+    <div class="align-items-center">
+        {% block content %}
+            
+        {% endblock content %}
+    </div>
+</div>
+
+<!-- Footer-->
+<footer class="footer text-center">
+    <div class="container">
+        <div class="row">
+            <!-- Footer Location-->
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4">Direccion</h4>
+                <p class="lead mb-0">
+                    - Guido ispano 333 - 3D -
+                    <br />
+                    - Castelar -
+                </p>
+            </div>
+            <!-- Footer Social Icons-->
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4">Mis redes</h4>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
+            </div>
+            <!-- Footer About Text-->
+            <div class="col-lg-4">
+                <p class="lead mb-0">
+                    Creado por Alan Luque
+                    <a href="{% url 'curriculum' %}">Curriculum</a>
+                    .
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+{% endblock base %}
+    

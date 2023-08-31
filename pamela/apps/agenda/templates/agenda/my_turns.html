@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title_h1 %}
+        {{ tittle }}
+{% endblock title_h1 %}
+
+
+
+  
+
+{% block content %}
+
+<div class="container mt-5 text-center py-5">
+    <div class="row">
+        
+    {% for t, d in turns %}          
+      <div class="col-md-4">
+        <div class="card m-1">          
+          <div class="card-body bg-primary">
+
+            <form action="{% url 'delet_turn' t.id %}" method="POST">
+
+              {% csrf_token %}
+              
+              <input type="hidden" name="turn" value="{{t}}">
+              <h5 class="card-title">{{ d }}</h5>
+              <p class="card-text">{{ t }}</p>
+              <button type="submit" class="btn btn-danger">Cancelar</button>
+          </form>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+    </div>
+  </div>
+{% endblock content %}
+    

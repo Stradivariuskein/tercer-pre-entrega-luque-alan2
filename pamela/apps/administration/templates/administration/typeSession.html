@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+
+{% block title_h1 %}
+        {{ tittle }}
+{% endblock title_h1 %}
+        
+
+{% block content %}
+        <div style="width: 75%; margin: auto" class="bg-secondary my-5 align-items-center card" >
+            
+                <form action="{% url 'typeSession-create' %}" method="POST", class="align-items-center p-5">
+                    {% csrf_token %}
+                    
+                        {{ form|crispy }}
+                        <p>{{ msj }}</p>
+                        <button type="submit", class="btn btn-success">{{ botton_text }}</button>
+                    
+                </form>
+            
+        </div>
+
+        <div style="width: 75%; margin: auto" class="table-responsive my-5 bg-primary align-items-center card" >
+                <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Remoto</th>
+                                <th>En grupo</th>
+                                <th>Obra social</th>
+                                <th>Precio</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                {% for session in typeSession_list %}
+<tr>
+    <td>{{ session.id }}</td>
+    <td>{{ session.remote }}</td>
+    <td>{{ session.in_group }}</td>
+    <td>{{ session.social_rounds }}</td>   
+    <td>{{ session.price }}</td>
+    <td>
+        <div class="container mt-1">
+                <a href="{% url 'typeSession-update' session.id %}" class="btn btn-success">editar</a>
+        </div>
+        <div class="container mt-1">
+                <form method="post" action="{% url 'typeSession-delete' session.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Borrar</button>
+                </form>
+        </div>
+    </td>  
+</tr>
+{% endfor %}
+</tbody>
+</table>
+        </div>
+{% endblock content %}
+    
